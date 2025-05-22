@@ -1,9 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { supabase } from '@/lib/supabase';
+import { supabase } from '../../lib/supabase';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
     const { name, email, picks } = req.body;
+
+    console.log("Incoming pick submission:", { name, email, picks });
 
     if (!name || !picks || typeof picks !== 'object') {
       return res.status(400).json({ error: 'Invalid submission' });
@@ -16,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       "Collin Morikawa": [68, 69, 72, 70],
       "Tony Finau": [71, 70, 70, 71],
       "Rickie Fowler": [72, 73, 74, 75],
-      "Sahith Theegala": [69, 67, 70, 68]
+      "Sahith Theegala": [69, 67, 70, 68],
     };
 
     const score = calculateScore(picks);
@@ -32,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     ]);
 
     if (error) {
-      console.error('Supabase insert error:', error);
+      console.error("Supabase insert error:", error);
       return res.status(500).json({ error: 'Failed to save pick' });
     }
 
