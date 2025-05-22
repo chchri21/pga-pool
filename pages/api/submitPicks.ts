@@ -1,5 +1,5 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { supabase } from '../../lib/supabase';
+import { supabase } from '@/lib/supabase';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
@@ -18,7 +18,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       "Collin Morikawa": [68, 69, 72, 70],
       "Tony Finau": [71, 70, 70, 71],
       "Rickie Fowler": [72, 73, 74, 75],
-      "Sahith Theegala": [69, 67, 70, 68],
+      "Sahith Theegala": [69, 67, 70, 68]
     };
 
     const score = calculateScore(picks);
