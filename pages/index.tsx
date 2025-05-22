@@ -11,13 +11,13 @@ const golfers = [
 ];
 
 export default function Home() {
-  const [picks, setPicks] = useState({});
+  const [picks, setPicks] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [responseMsg, setResponseMsg] = useState("");
 
-  const handlePick = (tier, golfer) => {
+  const handlePick = (tier: string, golfer: string) => {
     setPicks((prev) => ({ ...prev, [tier]: golfer }));
   };
 
@@ -41,11 +41,11 @@ export default function Home() {
     }
   };
 
-  const groupedGolfers = golfers.reduce((acc, golfer) => {
+  const groupedGolfers: Record<string, { name: string; tier: string }[]> = golfers.reduce((acc, golfer) => {
     if (!acc[golfer.tier]) acc[golfer.tier] = [];
     acc[golfer.tier].push(golfer);
     return acc;
-  }, {});
+  }, {} as Record<string, { name: string; tier: string }[]>);
 
   return (
     <main className="p-6 max-w-2xl mx-auto">
