@@ -1,8 +1,14 @@
-// pages/leaderboard.tsx
 import { useEffect, useState } from "react";
 
+type Entry = {
+  name: string;
+  score: number;
+  picks: Record<string, string>;
+  roundScores?: Record<string, number[]>;
+};
+
 export default function Leaderboard() {
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState<Entry[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
